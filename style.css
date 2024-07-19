@@ -1,0 +1,325 @@
+@font-face {
+    font-family: 'Gotham';
+    src: url('fonts/Gotham/Gotham-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('fonts/Gotham/Gotham-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('fonts/Gotham/Gotham-Thin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hatton';
+    src: url('fonts/Hatton/PPHatton-Ultralight.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+:root {
+    --bgColor: #cacf85;
+    --bgColor2: #090a0f;
+    --accentColor: #FFF;
+    --font: 'Gotham', sans-serif;
+    --delay: .3s;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    /*min-height: 115vh;*/
+    font-family: var(--font);
+    background: #CACF85;
+    background: radial-gradient(at center top, #CACF85, #010101);
+    /*background-image: url('background.png');*/
+    opacity: 0;
+    animation: 1s ease-out var(--delay) 1 transitionAnimation;
+    animation-fill-mode: forwards;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    min-height: 100vh;
+    z-index: -1;
+brightness(100%) saturate(60%) blur(4px)
+}
+
+#backgroundVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    height: 90vh;
+    max-height: 90vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.logo-container {
+    user-select: none;
+    cursor: default;
+    pointer-events: none;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    border-radius: 3px;
+}
+
+
+.logo-intouch {
+    font-family: 'Hatton', sans-serif;
+    font-size: 48px;
+    font-weight: normal;
+}
+
+.logo-sound {
+    font-family: 'Gotham', sans-serif;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.main-info {
+    height: 100%;
+    width: auto;
+    padding: 5%;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.announcement {
+    font-family: 'Hatton', sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    text-transform: uppercase;
+    user-select: none;
+    cursor: default;
+    pointer-events: none;
+    backdrop-filter: blur(2px);
+    border-radius: 3px;
+    color: white;
+}
+
+.call-to-action-button {
+    background: #cacf85;
+    border-radius: 8px;
+    font-size: 24px;
+    padding: 16px;
+    font-weight: 100;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.7s ease-in-out;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.call-to-action-button:hover, .call-to-action-button:focus {
+    background: rgba(202, 207, 133, 0.95);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+    letter-spacing: 0;
+}
+
+.call-to-action-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    letter-spacing: 1px;
+}
+
+.hands-container {
+    text-align: center;
+    width: 100vw;
+    z-index: 1000;
+}
+
+.svg-hand {
+    width: 100px;
+    height: auto;
+    transition: all 4s ease-in-out;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, rgba(202, 207, 133), rgba(9, 10, 15));
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: opacity 1s ease-out;
+}
+
+.left-hand {
+    width: 55vw;
+    margin-left: -10vw;
+    transform: translateX(-55vw);
+    position: relative;
+}
+
+.right-hand {
+    width: 55vw;
+    margin-right: -10vw;
+    transform: translateX(55vw);
+    position: relative;
+}
+
+
+
+
+@media (hover: hover) {
+    .link:hover {
+        background-color: var(--accentColor);
+        color: var(--bgColor);
+        transform: scale(1.02);
+    }
+}
+
+.link:active {
+    background-color: var(--accentColor);
+    color: var(--bgColor);
+}
+
+
+/*-------------------------loader-----------------------*/
+
+.loader {
+    display: inline-grid;
+    padding: 5px;
+    filter: blur(0.5px);
+}
+.loader:before {
+    content: "";
+    height: 40px;
+    aspect-ratio: 3;
+    --c: #0000 64%, #ffffff 66% 98%,#0000 101%;
+    background:
+            radial-gradient(35% 146% at 50% 159%,var(--c)) 0 0,
+            radial-gradient(35% 146% at 50% -59%,var(--c)) 100% 100%;
+    background-size: calc(200%/3) 50%;
+    background-repeat: repeat-x;
+    -webkit-mask: repeating-linear-gradient(90deg, #cacf85 0 10%,#0000 0 20%);
+    animation: l12 1.6s infinite linear;
+}
+@keyframes l12{
+    to {background-position: -200% 0,-100% 100%}
+}
+
+
+
+/*-------------------------animations-----------------------*/
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animated-fade-in {
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+
+
+
+
+@keyframes transitionAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes animate {
+    0% {
+        background-position: -500%;
+    }
+    100% {
+        background-position: 500%;
+    }
+}
+
+@keyframes animStar {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-2000px);
+    }
+}
+
+.events {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    gap: 1em;
+}
+
+.event-title {
+    font-weight: 600;
+}
+
+.event-links {
+    font-weight: 600;
+    color: inherit;
+}
+
+.event-links:hover {
+    background-color: rgba(256, 256, 256, 0.5);
+}
+
+.single-event {
+    border: 1px solid;
+    padding: 0.25em;
+    transform: rotate(-0.005turn);
+    cursor: default;
+}
+
+.single-event:hover {
+    transform: scale(1.20);
+}
