@@ -20,6 +20,15 @@
 }
 
 @font-face {
+    font-family: 'Gotham';
+    src: url('fonts/Gotham/Gotham-Light.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+
+
+@font-face {
     font-family: 'Hatton';
     src: url('fonts/Hatton/PPHatton-Ultralight.otf') format('opentype');
     font-weight: normal;
@@ -95,19 +104,22 @@ brightness(100%) saturate(60%) blur(4px)
     text-align: center;
     backdrop-filter: blur(2px);
     border-radius: 3px;
+    padding-top: 96px;
+    color: #cacf85;
 }
 
 
 .logo-intouch {
     font-family: 'Hatton', sans-serif;
-    font-size: 48px;
+    font-size: 64px;
     font-weight: normal;
 }
 
 .logo-sound {
     font-family: 'Gotham', sans-serif;
-    font-size: 28px;
-    font-weight: normal;
+    font-size: 32px;
+    font-weight: 200;
+    margin-top: -16px;
 }
 
 .main-info {
@@ -137,6 +149,7 @@ brightness(100%) saturate(60%) blur(4px)
 
 .call-to-action-button {
     background: #cacf85;
+    color: #786F52;
     border-radius: 8px;
     font-size: 24px;
     padding: 16px;
@@ -180,7 +193,7 @@ brightness(100%) saturate(60%) blur(4px)
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: radial-gradient(circle, rgba(202, 207, 133), rgba(9, 10, 15));
+    background: #010101;
     display: none;
     justify-content: center;
     align-items: center;
@@ -219,30 +232,37 @@ brightness(100%) saturate(60%) blur(4px)
 }
 
 
-/*-------------------------loader-----------------------*/
-
 .loader {
-    display: inline-grid;
-    padding: 5px;
-    filter: blur(0.5px);
-}
-.loader:before {
-    content: "";
-    height: 40px;
-    aspect-ratio: 3;
-    --c: #0000 64%, #ffffff 66% 98%,#0000 101%;
+    width: 40px;
+    aspect-ratio: 1;
+    --c: linear-gradient(#c9e265, #c9e265, #c9e265);
+    --r1: radial-gradient(farthest-side at bottom,#c9e265 93%,#c9e265);
+    --r2: radial-gradient(farthest-side at top   , #c9e265 93%,#c9e265);
     background:
-            radial-gradient(35% 146% at 50% 159%,var(--c)) 0 0,
-            radial-gradient(35% 146% at 50% -59%,var(--c)) 100% 100%;
-    background-size: calc(200%/3) 50%;
-    background-repeat: repeat-x;
-    -webkit-mask: repeating-linear-gradient(90deg, #cacf85 0 10%,#0000 0 20%);
-    animation: l12 1.6s infinite linear;
+            var(--c) ,var(--r1),var(--r2),
+            var(--c) ,var(--r1),var(--r2),
+            var(--c) ,var(--r1),var(--r2);
+    background-repeat: no-repeat;
+    animation: l2 1s infinite alternate;
 }
-@keyframes l12{
-    to {background-position: -200% 0,-100% 100%}
+@keyframes l2 {
+    0%,25% {
+        background-size: 8px 0,8px 4px,8px 4px,8px 0,8px 4px,8px 4px,8px 0,8px 4px,8px 4px;
+        background-position: 0 50%,0 calc(50% - 2px),0 calc(50% + 2px),50% 50%,50% calc(50% - 2px),50% calc(50% + 2px),100% 50%,100% calc(50% - 2px),100% calc(50% + 2px);
+    }
+    50% {
+        background-size: 8px 100%,8px 4px,8px 4px,8px 0,8px 4px,8px 4px,8px 0,8px 4px,8px 4px;
+        background-position: 0 50%,0 calc(0% - 2px),0 calc(100% + 2px),50% 50%,50% calc(50% - 2px),50% calc(50% + 2px),100% 50%,100% calc(50% - 2px),100% calc(50% + 2px);
+    }
+    75% {
+        background-size: 8px 100%,8px 4px,8px 4px,8px 100%,8px 4px,8px 4px,8px 0,8px 4px,8px 4px;
+        background-position: 0 50%,0 calc(0% - 2px),0 calc(100% + 2px),50% 50%,50% calc(0% - 2px),50% calc(100% + 2px),100% 50%,100% calc(50% - 2px),100% calc(50% + 2px);
+    }
+    95%,100% {
+        background-size: 8px 100%,8px 4px, 8px 4px,8px 100%,8px 4px,8px 4px,8px 100%,8px 4px,8px 4px;
+        background-position: 0 50%,0 calc(0% - 2px),0 calc(100% + 2px),50% 50%,50% calc(0% - 2px),50% calc(100% + 2px),100% 50%,100% calc(0% - 2px),100% calc(100% + 2px);
+    }
 }
-
 
 
 /*-------------------------animations-----------------------*/
