@@ -21,6 +21,13 @@
 
 @font-face {
     font-family: 'Gotham';
+    src: url('fonts/Gotham/Gotham-Xlight.otf') format('opentype');
+    font-weight: 50;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham';
     src: url('fonts/Gotham/Gotham-Light.otf') format('opentype');
     font-weight: 200;
     font-style: normal;
@@ -32,6 +39,13 @@
     font-family: 'Hatton';
     src: url('fonts/Hatton/PPHatton-Ultralight.otf') format('opentype');
     font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hatton';
+    src: url('fonts/Hatton/PPHatton-Medium.otf') format('opentype');
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -72,14 +86,15 @@ body {
     min-width: 100vw;
     min-height: 100vh;
     z-index: -1;
-brightness(100%) saturate(60%) blur(4px)
+    /*brightness(100%) saturate(60%) blur(4px)*/
 }
 
-#backgroundVideo {
+#backgroundVideo, #backgroundImage {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 
 .content {
     position: relative;
@@ -150,9 +165,9 @@ brightness(100%) saturate(60%) blur(4px)
 .call-to-action-button {
     background: #cacf85;
     color: #786F52;
-    border-radius: 8px;
-    font-size: 24px;
-    padding: 16px;
+    border-radius: 36px;
+    font-size: 18px;
+    padding: 24px 32px;
     font-weight: 100;
     border: none;
     outline: none;
@@ -184,7 +199,7 @@ brightness(100%) saturate(60%) blur(4px)
 .svg-hand {
     width: 100px;
     height: auto;
-    transition: all 4s ease-in-out;
+    transition: all 3s ease-in-out;
 }
 
 .overlay {
@@ -216,6 +231,27 @@ brightness(100%) saturate(60%) blur(4px)
 }
 
 
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.85;
+    }
+}
+
+.hands-load-percentage.pulse {
+    animation: pulse 1.5s ease-in-out forwards;
+}
+
+.hands-load-percentage {
+    font-family: 'Gotham', sans-serif;
+    font-size: 48px;
+    font-weight: 50;
+    color: white;
+}
 
 
 @media (hover: hover) {
@@ -232,37 +268,6 @@ brightness(100%) saturate(60%) blur(4px)
 }
 
 
-.loader {
-    width: 40px;
-    aspect-ratio: 1;
-    --c: linear-gradient(#c9e265, #c9e265, #c9e265);
-    --r1: radial-gradient(farthest-side at bottom,#c9e265 93%,#c9e265);
-    --r2: radial-gradient(farthest-side at top   , #c9e265 93%,#c9e265);
-    background:
-            var(--c) ,var(--r1),var(--r2),
-            var(--c) ,var(--r1),var(--r2),
-            var(--c) ,var(--r1),var(--r2);
-    background-repeat: no-repeat;
-    animation: l2 1s infinite alternate;
-}
-@keyframes l2 {
-    0%,25% {
-        background-size: 8px 0,8px 4px,8px 4px,8px 0,8px 4px,8px 4px,8px 0,8px 4px,8px 4px;
-        background-position: 0 50%,0 calc(50% - 2px),0 calc(50% + 2px),50% 50%,50% calc(50% - 2px),50% calc(50% + 2px),100% 50%,100% calc(50% - 2px),100% calc(50% + 2px);
-    }
-    50% {
-        background-size: 8px 100%,8px 4px,8px 4px,8px 0,8px 4px,8px 4px,8px 0,8px 4px,8px 4px;
-        background-position: 0 50%,0 calc(0% - 2px),0 calc(100% + 2px),50% 50%,50% calc(50% - 2px),50% calc(50% + 2px),100% 50%,100% calc(50% - 2px),100% calc(50% + 2px);
-    }
-    75% {
-        background-size: 8px 100%,8px 4px,8px 4px,8px 100%,8px 4px,8px 4px,8px 0,8px 4px,8px 4px;
-        background-position: 0 50%,0 calc(0% - 2px),0 calc(100% + 2px),50% 50%,50% calc(0% - 2px),50% calc(100% + 2px),100% 50%,100% calc(50% - 2px),100% calc(50% + 2px);
-    }
-    95%,100% {
-        background-size: 8px 100%,8px 4px, 8px 4px,8px 100%,8px 4px,8px 4px,8px 100%,8px 4px,8px 4px;
-        background-position: 0 50%,0 calc(0% - 2px),0 calc(100% + 2px),50% 50%,50% calc(0% - 2px),50% calc(100% + 2px),100% 50%,100% calc(0% - 2px),100% calc(100% + 2px);
-    }
-}
 
 
 /*-------------------------animations-----------------------*/
