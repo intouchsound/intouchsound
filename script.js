@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const backgroundVideo = document.getElementById('backgroundVideo');
     const callToActionContainer = document.getElementById('callToActionContainer');
     const callToActionButton = document.getElementById('callToActionButton');
-    const duration = 2500; // Loading duration in milliseconds
+    const duration = 2500;
     var clickCount = 0;
 
     const handPositions = {"desktop": {"start": 45, "normal": 15, "hover": 1, "click1": 2, "click2": 4},
@@ -61,6 +61,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 rightHand.style.transform = `translateX(${handPositions.desktop.normal - handPositions.desktop.click2}vw)`;
             }
         }
+        else if (action === "start") {
+            //this means button was hovered over
+            if (viewportWidth < 1024) {
+                // For mobile devices, adjust hand position to not roll out completely
+                leftHand.style.transform = `translateX(-${handPositions.mobile.start}vw)`;
+                rightHand.style.transform = `translateX(${handPositions.mobile.start}vw)`;
+            } else {
+                // For desktop, restore original extended position
+                leftHand.style.transform = `translateX(-${handPositions.desktop.start}vw)`;
+                rightHand.style.transform = `translateX(${handPositions.desktop.start}vw)`;
+            }
+        }
 
     }
 
@@ -78,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
         clickCount++;
         if (clickCount === 1) {
             console.log(callToActionButton)
-            callToActionButton.innerHTML = 'you ready?';
+            callToActionButton.innerHTML = 'are you ready?';
             updateHandPosition("click1")
             incrementPercentage(loadPercentage, 98, 50);
             loadPercentage.classList.remove('pulse')
@@ -134,6 +146,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.onload = function() {
         overlay.style.display = 'flex';
+        leftHand.style.transition = 'transform 3s ease-in-out';
+        rightHand.style.transition = 'transform 3s ease-in-out';
         updateHandPosition("away");
 
         setTimeout(() => {
@@ -149,9 +163,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     };
-
-    // Responsive adjustments when resizing the window
-    window.addEventListener('resize', updateHandPosition);
 });
 
 document.addEventListener("DOMContentLoaded", function() {

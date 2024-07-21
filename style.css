@@ -198,7 +198,9 @@ body {
     text-transform: uppercase;
     border-radius: 30px;
     font-size: 18px;
-    padding: 24px 24px;
+    padding: 18px 24px;
+    width: 19ch;
+    text-align: center;
     font-weight: 200;
     border: none;
     outline: none;
@@ -233,7 +235,6 @@ body {
 .call-to-action-button:active {
     transform: translateY(2px);
     box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-    letter-spacing: 1px;
 }
 
 .hands-container {
@@ -255,7 +256,7 @@ body {
     width: 100vw;
     height: 100vh;
     background: #010101;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 100;
