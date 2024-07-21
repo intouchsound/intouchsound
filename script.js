@@ -64,25 +64,37 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
+    function incrementPercentage(element, targetPercentage, updateInterval) {
+        let currentPercentage = parseInt(element.textContent) || 0; // Parse the current percentage or default to 0
+        if (currentPercentage < targetPercentage) {
+            // Increment the current percentage
+            element.textContent = currentPercentage + 1;
+            // Schedule the next increment
+            setTimeout(() => incrementPercentage(element, targetPercentage, updateInterval), updateInterval);
+        }
+    }
+
     button.addEventListener('click', function() {
         clickCount++;
         if (clickCount === 1) {
             console.log(callToActionButton)
             callToActionButton.innerHTML = 'you ready?';
             updateHandPosition("click1")
+            incrementPercentage(loadPercentage, 98, 50);
+            loadPercentage.classList.remove('pulse')
+            loadPercentage.classList.add('pulse');
             button.style.background = '#cacf85';
         } else if (clickCount === 2) {
             updateHandPosition("click2");
-            overlay.style.display = 'flex';  // Make overlay visible
-            overlay.style.zIndex = '1000000';  // Bring to front
+            incrementPercentage(loadPercentage, 100, 150);
+            loadPercentage.classList.remove('pulse')
+            loadPercentage.classList.add('pulse');
+            loadPercentage.classList.add('pulse');
 
-            // Smoothly transition the opacity of the overlay
             setTimeout(function() {
-                overlay.style.opacity = '1';  // Start the opacity transition
-                setTimeout(function() {
-                    window.location.href = 'https://intouchsound.com/signup';  // Redirect after the transition
-                }, 500);  // Wait for the opacity to finish transitioning
-            }, 10);  // Short delay to ensure the display has changed to 'flex'
+                // Redirect after the transition
+                window.location.href = 'https://intouchsound.com/signup';
+            }, 500);
         }
     });
 
@@ -102,10 +114,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (elapsed < duration) {
             const progress = elapsed / duration;
-            loadPercentage.textContent = Math.min(Math.round(progress * progress * 100), 100);
+            loadPercentage.textContent = Math.min(Math.round(progress * progress * 90), 90);
             window.requestAnimationFrame(step);
         } else {
-            loadPercentage.textContent = '100';
+            loadPercentage.textContent = '90';
             loadPercentage.classList.add('pulse');
             setTimeout(endLoading, 500);
         }
