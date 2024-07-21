@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
             incrementPercentage(loadPercentage, 94, 50);
             loadPercentage.classList.remove('pulse')
             loadPercentage.classList.add('pulse');
-            button.style.background = '#cacf85';
+            button.style.background = '#786f52';
         } else if (clickCount === 2) {
             updateHandPosition("click2");
             incrementPercentage(loadPercentage, 98, 150);
