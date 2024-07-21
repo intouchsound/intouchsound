@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let currentPercentage = parseInt(element.textContent) || 0; // Parse the current percentage or default to 0
         if (currentPercentage < targetPercentage) {
             // Increment the current percentage
-            element.textContent = currentPercentage + 1;
+            element.textContent = currentPercentage + 1 + "%";
             // Schedule the next increment
             setTimeout(() => incrementPercentage(element, targetPercentage, updateInterval), updateInterval);
         }
@@ -92,13 +92,13 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(callToActionButton)
             callToActionButton.innerHTML = 'are you ready?';
             updateHandPosition("click1")
-            incrementPercentage(loadPercentage, 98, 50);
+            incrementPercentage(loadPercentage, 94, 50);
             loadPercentage.classList.remove('pulse')
             loadPercentage.classList.add('pulse');
             button.style.background = '#cacf85';
         } else if (clickCount === 2) {
             updateHandPosition("click2");
-            incrementPercentage(loadPercentage, 100, 150);
+            incrementPercentage(loadPercentage, 98, 150);
             loadPercentage.classList.remove('pulse')
             loadPercentage.classList.add('pulse');
             loadPercentage.classList.add('pulse');
@@ -126,10 +126,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (elapsed < duration) {
             const progress = elapsed / duration;
-            loadPercentage.textContent = Math.min(Math.round(progress * progress * 90), 90);
+            loadPercentage.textContent = Math.min(Math.round(progress * progress * 90), 90) + "%";
             window.requestAnimationFrame(step);
         } else {
-            loadPercentage.textContent = '90';
+            loadPercentage.textContent = '90%';
             loadPercentage.classList.add('pulse');
             setTimeout(endLoading, 500);
         }
