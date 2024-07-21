@@ -38,16 +38,17 @@
 @font-face {
     font-family: 'Hatton';
     src: url('fonts/Hatton/PPHatton-Ultralight.otf') format('opentype');
-    font-weight: normal;
+    font-weight: 100;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Hatton';
-    src: url('fonts/Hatton/PPHatton-Medium.otf') format('opentype');
-    font-weight: 400;
+    src: url('fonts/Hatton/PPHatton-Megalight.otf') format('opentype');
+    font-weight: 50;
     font-style: normal;
 }
+
 
 
 :root {
@@ -62,7 +63,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    width: 100vw;
+    width: 101vw;
     /*min-height: 115vh;*/
     font-family: var(--font);
     background: #CACF85;
@@ -86,7 +87,6 @@ body {
     min-width: 100vw;
     min-height: 100vh;
     z-index: -1;
-    /*brightness(100%) saturate(60%) blur(4px)*/
 }
 
 #backgroundVideo, #backgroundImage {
@@ -103,9 +103,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1em;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
+    padding-top: 13vh;
+    padding-bottom: 13vh;
     height: 90vh;
     max-height: 90vh;
     overflow-x: hidden;
@@ -119,40 +118,57 @@ body {
     text-align: center;
     backdrop-filter: blur(2px);
     border-radius: 3px;
-    padding-top: 96px;
     color: #cacf85;
 }
 
 
 .logo-intouch {
     font-family: 'Hatton', sans-serif;
-    font-size: 64px;
+    font-size: 56px;
     font-weight: normal;
 }
 
 .logo-sound {
     font-family: 'Gotham', sans-serif;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 200;
     margin-top: -16px;
 }
 
+@media (min-width: 1024px) {
+    .logo-intouch {
+        font-size: 84px;
+    }
+
+    .logo-sound {
+        font-size: 36px;
+    }
+}
+
+
 .main-info {
-    height: 100%;
     width: auto;
-    padding: 5%;
+    padding-top: 16vh;
     display: flex;
-    align-content: center;
-    justify-content: space-around;
+    gap: 1vh;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
 }
 
 
+.announcement-and-hands {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
+
 .announcement {
-    font-family: 'Hatton', sans-serif;
-    font-size: 24px;
-    font-weight: normal;
+    font-family: 'Gotham', sans-serif;
+    font-size: 16px;
+    font-weight: 100;
     text-transform: uppercase;
     user-select: none;
     cursor: default;
@@ -162,23 +178,53 @@ body {
     color: white;
 }
 
+@media (min-width: 1024px) {
+    .announcement {
+        font-size: 24px;
+    }
+}
+
+
+.call-to-action-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    margin-top: -10vh;
+}
+
 .call-to-action-button {
-    background: #cacf85;
-    color: #786F52;
-    border-radius: 36px;
+    background: rgba(1, 1, 1, 0.8);
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border-radius: 30px;
     font-size: 18px;
-    padding: 24px 32px;
-    font-weight: 100;
+    padding: 24px 24px;
+    font-weight: 200;
     border: none;
     outline: none;
     cursor: pointer;
     transition: all 0.7s ease-in-out;
-    letter-spacing: 2px;
+    transition: background-color 0.5s linear;
+    letter-spacing: 0;
     text-decoration: none;
 }
 
+@media (max-width: 1024px) {
+
+    .call-to-action-container {
+        margin-top: 0;
+        padding-top: 10vh;
+    }
+
+    .call-to-action-button {
+        background: rgba(1, 1, 1, 1);
+        border-radius: 30px;
+        font-size: 16px;
+    }
+}
+
 .call-to-action-button:hover, .call-to-action-button:focus {
-    background: rgba(202, 207, 133, 0.95);
+    background: rgba(1, 1, 1, 1);
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     transform: translateY(-3px);
     letter-spacing: 0;
@@ -217,17 +263,33 @@ body {
 }
 
 .left-hand {
-    width: 55vw;
-    margin-left: -10vw;
-    transform: translateX(-55vw);
+    width: 40vw;
+    margin-left: -40vw;
+    transform: translateX(-40vw);
     position: relative;
 }
 
 .right-hand {
-    width: 55vw;
-    margin-right: -10vw;
-    transform: translateX(55vw);
+    width:40vw;
+    margin-right: -40vw;
+    transform: translateX(40vw);
     position: relative;
+}
+
+@media (max-width: 1024px) {
+    .left-hand {
+        width: 55vw;
+        margin-left: -55vw;
+        transform: translateX(-55vw);
+        position: relative;
+    }
+
+    .right-hand {
+        width:55vw;
+        margin-right: -55vw;
+        transform: translateX(55vw);
+        position: relative;
+    }
 }
 
 
@@ -247,11 +309,19 @@ body {
 }
 
 .hands-load-percentage {
-    font-family: 'Gotham', sans-serif;
-    font-size: 48px;
+    font-family: 'Hatton', sans-serif;
+    font-size: 30px;
     font-weight: 50;
     color: white;
+    z-index: 1000;
 }
+
+@media (min-width: 1024px) {
+    .hands-load-percentage {
+        font-size: 40px;
+    }
+}
+
 
 
 @media (hover: hover) {

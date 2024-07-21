@@ -23,13 +23,12 @@
         <source src="bg.webm" type="video/webm">
         <source src="bg.mp4" type="video/mp4">
     </video>
-    <img id="backgroundImage" src="bg.jpeg"></img>
+    <img id="backgroundImage" src="bg.jpeg">img>
 </div>
 
 <div class="content" id="content animated-fade-in">
 
     <div class="overlay" id="overlay">
-        <div class="hands-load-percentage" id="loadPercentage">0%</div>
     </div>
 
     <div class="logo-container">
@@ -38,16 +37,22 @@
     </div>
 
     <div class="main-info">
-        <div class="announcement">
-            Launching in August 2024
+        <div class="hands-load-percentage" id="loadPercentage">0</div>
+        <div class="announcement-and-hands">
+            <div class="announcement">
+                Launching in August 2024
+            </div>
+
+            <div class="hands-container">
+                <img src="imgs/hand-left.svg" id="leftHand" alt="Left Hand" class="svg-hand left-hand">
+                <img src="imgs/hand-right.svg" id="rightHand" alt="Right Hand" class="svg-hand right-hand">
+            </div>
         </div>
-        <div class="hands-container">
-            <img src="imgs/hand-left.svg" id="leftHand" alt="Left Hand" class="svg-hand left-hand">
-            <img src="imgs/hand-right.svg" id="rightHand" alt="Right Hand" class="svg-hand right-hand">
+        <div class="call-to-action-container" id="callToActionContainer">
+            <div class="call-to-action-button" id="callToActionButton">
+                get a chance to join
+            </div>
         </div>
-        <a class="call-to-action-button" href="https://intouchsound.com/signup">
-            be among the first
-        </a>
     </div>
 
 
