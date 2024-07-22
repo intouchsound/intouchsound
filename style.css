@@ -98,6 +98,7 @@ body {
     min-width: 100vw;
     min-height: 100vh;
     z-index: -1;
+    filter: brightness(0.8);
 }
 
 #backgroundVideo, #backgroundImage {
@@ -314,6 +315,10 @@ body {
         transform: scale(1.1);
         opacity: 0.85;
     }
+    100% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
 }
 
 .hands-load-percentage.pulse {
@@ -324,8 +329,12 @@ body {
     font-family: 'Hatton', sans-serif;
     font-size: 30px;
     font-weight: 50;
+    user-select: none;
+    cursor: default;
+    pointer-events: none;
     color: white;
     z-index: 1000;
+    transition: opacity 1.5s ease-out;
 }
 
 @media (min-width: 1024px) {

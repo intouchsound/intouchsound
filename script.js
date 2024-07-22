@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const duration = 2500;
     var clickCount = 0;
 
-    const handPositions = {"desktop": {"start": 45, "normal": 15, "hover": 1, "click1": 2, "click2": 4},
-                            "mobile": {"start": 55, "normal": 3, "hover": 1, "click1": 2, "click2": 4}}
+    const handPositions = {"desktop": {"start": 45, "normal": 15, "hover": 1, "click1": 4, "click2": 4},
+                            "mobile": {"start": 55, "normal": 3, "hover": 1, "click1": 4, "click2": 4}}
 
     function updateHandPosition(action) {
         const viewportWidth = window.innerWidth;
@@ -86,30 +86,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    button.addEventListener('click', function() {
-        clickCount++;
-        if (clickCount === 1) {
-            console.log(callToActionButton)
-            callToActionButton.innerHTML = 'are you ready?';
-            updateHandPosition("click1")
-            incrementPercentage(loadPercentage, 94, 50);
-            loadPercentage.classList.remove('pulse')
-            loadPercentage.classList.add('pulse');
-            button.style.background = '#786f52';
-        } else if (clickCount === 2) {
-            updateHandPosition("click2");
-            incrementPercentage(loadPercentage, 98, 150);
-            loadPercentage.classList.remove('pulse')
-            loadPercentage.classList.add('pulse');
-            loadPercentage.classList.add('pulse');
-
-            setTimeout(function() {
-                // Redirect after the transition
-                window.location.href = 'https://intouchsound.com/signup';
-            }, 500);
-        }
-    });
-
     // Add event listeners for hover effects
     button.addEventListener('mouseover', function() {
         updateHandPosition("over");
@@ -119,6 +95,10 @@ document.addEventListener("DOMContentLoaded", function() {
         updateHandPosition("away");
     });
 
+    button.addEventListener('click', function() {
+        updateHandPosition("click1");
+    });
+
     let start = null;
     function step(timestamp) {
         if (!start) start = timestamp;
@@ -126,10 +106,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (elapsed < duration) {
             const progress = elapsed / duration;
-            loadPercentage.textContent = Math.min(Math.round(progress * progress * 90), 90) + "%";
+            loadPercentage.textContent = Math.min(Math.round(progress * progress * 100), 100) + "%";
             window.requestAnimationFrame(step);
         } else {
-            loadPercentage.textContent = '90%';
+            loadPercentage.textContent = '100%';
             loadPercentage.classList.add('pulse');
             setTimeout(endLoading, 500);
         }
@@ -137,10 +117,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function endLoading() {
         overlay.style.opacity = '0';
+
         setTimeout(() => {
             overlay.style.display = 'none';
             overlay.style.zIndex = '-1';
-            callToActionContainer.style.zIndex = '10000'
+            callToActionContainer.style.zIndex = '10000';
+            // loadPercentage.style.opacity = '0'
         }, 1000);
     }
 
@@ -165,23 +147,41 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    const video = document.getElementById('backgroundVideo');
-    const image = document.getElementById('backgroundImage');
+// document.addEventListener("DOMContentLoaded", function() {
+//     const video = document.getElementById('backgroundVideo');
+//     const image = document.getElementById('backgroundImage');
+//
+//     video.addEventListener('error', function() {
+//         video.style.display = 'none';
+//         image.style.display = 'block';  // Show the image if there is an error with the video
+//     });
+//
+//     video.addEventListener('canplay', function() {
+//         video.style.display = 'block';
+//         image.style.display = 'none';  // Hide the image if the video can play
+//     });
+//
+//     // Check if video has enough data to play
+//     if (video.readyState < 3) {
+//         video.style.display = 'none';
+//         image.style.display = 'block';
+//     }
+// });
 
-    video.addEventListener('error', function() {
-        video.style.display = 'none';
-        image.style.display = 'block';  // Show the image if there is an error with the video
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.getElementById('backgroundVideo');
+    var fallbackImage = document.getElementById('backgroundImage');
 
-    video.addEventListener('canplay', function() {
-        video.style.display = 'block';
-        image.style.display = 'none';  // Hide the image if the video can play
-    });
+    // Attempt to play the video
+    var playPromise = video.play();
 
-    // Check if video has enough data to play
-    if (video.readyState < 3) {
-        video.style.display = 'none';
-        image.style.display = 'block';
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            // Video is playing, do nothing
+        }).catch(error => {
+            // Video failed to play, show fallback image
+            video.style.display = 'none'; // Hide the video
+            fallbackImage.style.display = 'block'; // Show the fallback image
+        });
     }
 });
