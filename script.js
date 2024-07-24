@@ -4,8 +4,6 @@ const handPositions = {"desktop": {"start": 45, "normal": 15, "hover": 1, "click
 function updateHandPosition(action) {
     const viewportWidth = window.innerWidth;
     if (action === "away") {
-        //this means that mouse was moved away
-        console.log("Updating away position")
         if (viewportWidth < 1024) {
             leftHand.style.transform = `translateX(-${handPositions.mobile.normal}vw)`;
             rightHand.style.transform = `translateX(${handPositions.mobile.normal}vw)`;
@@ -98,13 +96,20 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     let start = null;
+    var handsContainer = document.getElementById('handsContainer');
     function step(timestamp) {
-        if (!start) start = timestamp;
+        if (!start) {
+            start = timestamp;
+        }
         const elapsed = timestamp - start;
 
         if (elapsed < duration) {
             const progress = elapsed / duration;
             loadPercentage.textContent = Math.min(Math.round(progress * progress * 100), 100) + "%";
+            if (loadPercentage.textContent === "50%") {
+                handsContainer.style.transition = 'opacity 2s ease-in-out;'
+                handsContainer.style.opacity = '1';
+            }
             window.requestAnimationFrame(step);
         } else {
             loadPercentage.textContent = '100%';
@@ -115,12 +120,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function endLoading() {
         overlay.style.opacity = '0';
+        handsContainer.style.opacity = '1';
 
         setTimeout(() => {
             overlay.style.display = 'none';
             overlay.style.zIndex = '-1';
             callToActionContainer.style.zIndex = '10000';
-            // loadPercentage.style.opacity = '0'
         }, 1000);
     }
 
@@ -148,8 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener('DOMContentLoaded', function() {
     var video = document.getElementById('backgroundVideo');
     var fallbackImage = document.getElementById('backgroundImage');
-    var rightHand = document.getElementById('rightHand');
-    var leftHand = document.getElementById('leftHand');
+    var handsContainer = document.getElementById('handsContainer');
 
     function calculatePositionForWidthPercentage(percentage, isNegative) {
         const position = (percentage / 100) * window.innerWidth;
@@ -161,10 +165,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (playPromise !== undefined) {
         playPromise.then(_ => {
+
         }).catch(error => {
             video.style.display = 'none';
             fallbackImage.style.display = 'block';
-            console.log("caught unplaying video")
+            handsContainer.style.opacity = '0'
+            console.log(handsContainer)
             setTimeout(() => {
             }, 1000);
 
